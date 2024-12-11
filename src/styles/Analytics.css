@@ -105,25 +105,6 @@
     margin-right: 10px;
 }
 
-.legend-color.red {
-    background-color: #e74c3c; /* Red for "Fundamental Misunderstanding" */
-}
-  
-  .legend-color.orange {
-    background-color: #f39c12; /* Orange for "Partial Understanding" */
-}
-  
-  .legend-color.yellow {
-    background-color: #f1c40f; /* Yellow for "Adequate Understanding" */
-}
-  
-  .legend-color.green {
-    background-color: #2ecc71; /* Green for "Proficient Understanding" */
-}
-  
-  .legend-color.blue {
-    background-color: #3498db; /* Blue for "Exceptional Understanding" */
-}
 
 .anaylitcal-content {
     display: flex;

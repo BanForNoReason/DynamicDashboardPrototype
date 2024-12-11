@@ -1,6 +1,7 @@
 import React from 'react';
-import '../styles/Sidebar.css';
+import "../../styles/Sidebar.css";
 import { NavLink } from 'react-router-dom';
+import logo from '../../assets/bitlearnslogo.jpg';
 // importing icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -16,7 +17,7 @@ const Sidebar = () => {
     <div className="sidebar">
       {/* Logo */}
       <div className="sidebar-logo">
-        <img src="/path-to-your-logo.png" alt="App Logo" />
+        <img src={logo} alt="Bitlearns Logo" />
       </div>
 
       {/* Navigation Menu */}
@@ -28,7 +29,7 @@ const Sidebar = () => {
         </li>
         <li>
           <NavLink to="/classes" className={({ isActive }) => (isActive ? 'active' : '')}>
-            <FontAwesomeIcon icon={faUsers} />
+          <FontAwesomeIcon icon={faUsers} />
           </NavLink>
         </li>
         <li>
