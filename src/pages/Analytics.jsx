@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Analytics.css';
+import AnalyticChart from '../components/charts/AnalyticsChart';
 import apiClient from '../utils/api';
 
 const Analytics = () => {
@@ -36,9 +37,9 @@ const Analytics = () => {
                 } catch(error) {
                     console.error('Error fetching the lectures:', error);
                 }
-            }
-        };
-        fetchLectures();
+            };
+            fetchLectures();
+        }
         //returning selectedCourse lectures
     }, [selectedCourse]);
 
@@ -87,7 +88,7 @@ const Analytics = () => {
             <header className="analytics-header">
                 <h1>Insights</h1>
             <div className="course-dropdown">
-                <select onChange={(e) => setSelectedClasses(e.target.value)} value={selectedCourse || ''}>
+            <select onChange={(e) => setSelectedCourse(e.target.value)} value={selectedCourse || ''}>
                     <option value="" disabled>
                         Courses
                     </option>
@@ -126,7 +127,7 @@ const Analytics = () => {
                     ))}
                 </select>
             </div>
-            <button onClick={fetchAnalytics} disabled={!selectedCourse || !selectedLectures}>
+            <button onClick={fetchAnalytics} disabled={!selectedCourse || !selectedLecture}>
                 Fetch Analytics
             </button>
 
@@ -143,21 +144,22 @@ const Analytics = () => {
                 </ul>
             </div>
 
-            <div className="analytical-content">
-                {loading && <p> Loading analytical data...</p>}
+            <div className="analytics-content">
+                {loading && <p>Loading analytical data...</p>}
                 {!loading && analyticsData ? (
                     <div>
-                        <p>Attempted: {analyticsData.attempted_count}</p>
-                        <p>Not Attempted: {analyticsData.not_attempted_count}</p>
-                        <p>Correct: {analyticsData.correct_percentage}%</p>
-                        <p>Incorrect: {analyticsData.incorrect_percentage}%</p>
+                    <p>Attempted: {analyticsData.attempted_count}</p>
+                    <p>Not Attempted: {analyticsData.not_attempted_count}</p>
+                    <p>Correct: {parseFloat(analyticsData.correct_percentage).toFixed(1)}%</p>
+                    <p>Incorrect: {parseFloat(analyticsData.incorrect_percentage).toFixed(1)}%</p>
+                    <AnalyticChart data={analyticsData} />
                     </div>
                 ) : (
                     !loading && (
-                        <div>
-                            <p>No analytical data available</p>
-                            <small> Please select a course and a lecture to view analytics</small>
-                        </div>
+                    <div>
+                        <p>No analytical data available</p>
+                        <small>Please select a course and a lecture to view analytics</small>
+                    </div>
                     )
                 )}
             </div>
